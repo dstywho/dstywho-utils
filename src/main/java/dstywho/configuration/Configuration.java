@@ -7,4 +7,9 @@ public abstract class Configuration {
         {
             return new Gson().toJson(this);
         }
+
+    public boolean equals(Object another)
+        {
+            return ((Configuration) another).toJson().equals(this.toJson());
+        }
 }
