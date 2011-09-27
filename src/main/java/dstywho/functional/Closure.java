@@ -1,6 +1,8 @@
 package dstywho.functional;
 
-public abstract class Closure<T> {
+import java.util.concurrent.Callable;
+
+public abstract class Closure<T> implements Callable<T> {
   public T perform() {
     return act();
   }
@@ -14,4 +16,5 @@ public abstract class Closure<T> {
   }
 
   public abstract T act();
+  
 }
