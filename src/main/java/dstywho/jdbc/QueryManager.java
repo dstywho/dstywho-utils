@@ -13,8 +13,8 @@ import java.util.Vector;
 
 public class QueryManager {
 	public static String HOST = "jdbc:oracle:thin:@cadmium.duhs.duke.edu:1521:test1";
-	public static String USERNAME = "cdtsang";
-	public static String PASSWORD = "tsang_34653";
+	public static String USERNAME = "achecker";
+	public static String PASSWORD = "calgb_0000";
 	private Connection connection;
 
 	public void startConnection() throws SQLException {
