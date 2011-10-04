@@ -3,26 +3,27 @@ package dstywho.probably;
 import java.util.Random;
 
 public class RandomString extends Random {
+    private static String characters = "ABCDEFGHIJKLMNOPabcdefghijklmnop123";
 
-    public RandomString(long seed)
-        {
-            super(seed);
-        }
+    public RandomString(long seed) {
+        super(seed);
+    }
 
-    public String nextString(int maxlen)
-        {
-            int n = nextInt(maxlen + 1);
-            char c[] = new char[n];
-            for (int i = 0; i < n; i++)
-                c[i] = (char) (32 + nextInt(128 - 32));
-            return new String(c);
+    public String nextString(int maxlen) {
+        char[] text = new char[maxlen];
+        for (int i = 0; i < maxlen; i++) {
+            text[i] = characters.charAt(this.nextInt(characters.length()));
         }
+        return new String(text);
 
-    public static void main(String args[])
-        {
-            RandomString rs = new RandomString(1000);
-            String s = rs.nextString(Integer.parseInt(args[0]));
-            System.out.println(s);
-        }
+    }
+
+    public static void main(String args[]) {
+        RandomString rs = new RandomString(1000);
+        String s = rs.nextString(123);
+
+        System.out.println(s);
+        System.out.println(rs.nextString(123));
+    }
 
 }
