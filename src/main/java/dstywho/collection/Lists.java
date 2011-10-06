@@ -8,4 +8,7 @@ public class Lists {
         int length = c.size();
         return c.get(length - 1);
     }
+    public static <E> E first(List<E> c) {
+        return c.get(0);
+    }
 }
