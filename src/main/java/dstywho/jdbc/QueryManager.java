@@ -1,9 +1,8 @@
 package dstywho.jdbc;
 
 import java.sql.Connection;
-import oracle.jdbc.driver.OracleDriver;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
+import java.sql.DriverManager;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -17,8 +16,8 @@ public class QueryManager {
     public static String PASSWORD = "calgb_0000";
     private Connection   connection;
 
-    public void startConnection() throws SQLException {
-        DriverManager.registerDriver(new OracleDriver());
+    public void startConnection(java.sql.Driver driver) throws SQLException {
+        DriverManager.registerDriver(driver);
         connection = DriverManager.getConnection(HOST, USERNAME, PASSWORD);
     }
 
@@ -110,19 +109,19 @@ public class QueryManager {
     }
 
     public static void main(String[] args) {
-        QueryManager qm = new QueryManager();
-        try {
-            qm.startConnection();
+     //   QueryManager qm = new QueryManager();
+     //   try {
+     //       qm.startConnection(driver);
 
-            Table results = qm.query("Select * from participant");
-            System.out.println(results.size());
+     //       Table results = qm.query("Select * from participant");
+     //       System.out.println(results.size());
 
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        finally {
-            qm.closeConnection();
-        }
+     //   } catch (Exception e) {
+     //       e.printStackTrace();
+     //   }
+     //   finally {
+     //       qm.closeConnection();
+     //   }
     }
 
     public void closeConnection() {

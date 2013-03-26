@@ -2,10 +2,17 @@ package dstywho.jdbc;
 
 import java.util.ArrayList;
 import java.util.Vector;
+import java.sql.Driver;
 
 import org.apache.commons.lang.StringUtils;
 
 public class QueryHelper {
+
+	private Driver driver;
+
+	public QueryHelper(Driver driver){
+			this.driver = driver;
+	}
 
 	public void insert(String tableName, Row row) {
 		ArrayList query = new ArrayList<String>();
@@ -21,7 +28,7 @@ public class QueryHelper {
 		Table results = null;
 		QueryManager qm = new QueryManager();
 		try {
-			qm.startConnection();
+			qm.startConnection(driver);
 
 			results = qm.query(query);
 
@@ -34,42 +41,42 @@ public class QueryHelper {
 	}
 
 	public static void main(String[] args) {
-		final String queryId = new QueryHelper().query("SELECT MAX(QUERY_ID) FROM CALGBTEST.QUERY").get(0).get(0);
-		System.out.println(queryId);
-		Row row = new Row() {
-			{
-				add(Integer.parseInt(queryId) + 1 + "");
-				add("128");
-				add("80303");
-				add("580505");
-				add("125");
-				add("999");
-				add("sysdate");
-				add("34653");
-				add("sysdate");
-				setColumns(new Vector<String>() {
-					{
-						add("QUERY_ID");
-						add("DATA_TYPE_ID");
-						add("STUDY_NUM");
-						add("PATIENT_ID");
-						add("QUERY_TYPE_ID");
-						add("QUERY_ID_NAME");
-						add("CREATION_DT");
-						add("OPERATOR_ID");
-						add("OPERATOR_DT");
-					}
-				});
+		//final String queryId = new QueryHelper().query("SELECT MAX(QUERY_ID) FROM CALGBTEST.QUERY").get(0).get(0);
+		//System.out.println(queryId);
+		//Row row = new Row() {
+		//	{
+		//		add(Integer.parseInt(queryId) + 1 + "");
+		//		add("128");
+		//		add("80303");
+		//		add("580505");
+		//		add("125");
+		//		add("999");
+		//		add("sysdate");
+		//		add("34653");
+		//		add("sysdate");
+		//		setColumns(new Vector<String>() {
+		//			{
+		//				add("QUERY_ID");
+		//				add("DATA_TYPE_ID");
+		//				add("STUDY_NUM");
+		//				add("PATIENT_ID");
+		//				add("QUERY_TYPE_ID");
+		//				add("QUERY_ID_NAME");
+		//				add("CREATION_DT");
+		//				add("OPERATOR_ID");
+		//				add("OPERATOR_DT");
+		//			}
+		//		});
 
-			}
-		};
-		new QueryHelper().insert("CALGBTEST.Query", row);
+		//	}
+		//};
+		//new QueryHelper().insert("CALGBTEST.Query", row);
 	}
 
 	public void insert(String query) {
 		QueryManager qm = new QueryManager();
 		try {
-			qm.startConnection();
+			qm.startConnection(driver);
 
 			qm.update(query);
 
