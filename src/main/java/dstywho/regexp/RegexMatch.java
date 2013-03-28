@@ -12,6 +12,7 @@ public class RegexMatch {
 	}
 	
 	public Vector<RegexMatch> find(String regexp){
+		if(regexp == null) return new Vector<RegexMatch>();
 		Matcher matcher = Pattern.compile(regexp).matcher(content);
 		Vector<RegexMatch> vector = new Vector<RegexMatch>(); 
 		while(matcher.find()){
